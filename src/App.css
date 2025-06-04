@@ -1,130 +1,305 @@
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Lato:wght@300;400;700&display=swap');
+:root {
+    --primary-bg: #f0f2f5;
+    --secondary-bg: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #4a90e2;
+    --accent-light: #d0e6fa;
+    --accent-dark: #1a5a99;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --font-sans: 'Lato', sans-serif;
+    --font-hand: 'Gochi Hand', cursive;
+}
 
 * {
-    font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: gray;
-    color: white;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-sans);
 }
 
-header {
-    background-color: #111;    
-    text-align: center;
-
+html,
+body {
+    height: 100%;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
 }
 
-main {
-    flex-grow: 1;
-    width: 80%;
-    max-width: 1024px;
-    margin: 10px auto;
-}
-
-h2 {
-    font-size: 1.2rem;
-    
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form * {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-form input {
-    border: #ccc solid 1px;
-    border-radius: 5px 0 0 5px;
-    padding: 10px;
-    flex-grow: 1;
-}
-
-form button {
-    background-color: rgb(99, 99, 99);
-    color: white;
-    border-radius: 0 5px 5px 0;
-    border: none;
-    padding: 10px 30px;
-    font-weight: bold;
-}
-
-form button:hover {
-    background-color: #111;
-    color: white;
-    border-radius: 0 5px 5px 0;
-    border: none;
-    padding: 10px 30px;
-    font-weight: bold;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 ul {
     list-style: none;
     padding-left: 0;
-    /* display: flex;     */
 }
 
-li:nth-child(odd) {
-    background-color: #333;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-family: var(--font-hand);
+    font-size: 2rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.6s ease-out;
+}
+
+main {
+    flex-grow: 1;
+    width: 80%;
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Notes title */
+main h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-dark);
+    position: relative;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Add form */
+form {
+    display: flex;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+form input {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--accent-light);
+    border-right: none;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    outline: none;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+form input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+form button {
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: 2px solid var(--accent-color);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+form button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* Notes list */
+ul {
+    animation: fadeIn 1s ease-out;
 }
 
 li {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-top: #444 solid 1px;
-    font-size: 1.2rem;
+    background-color: var(--primary-bg);
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+    animation: fadeIn 0.5s ease-out;
+}
+
+li:nth-child(odd) {
+    background-color: var(--accent-light);
+}
+
+li:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: translateX(4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 li span {
     flex-grow: 1;
-    padding: 10px 20px;
-    overflow-y: auto;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    background-color: #111;
-    width: 100%;
-    text-align: center;
-}
-
-.foot{
-    display: flex;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.infos{
-    margin-right: auto;
+    word-break: break-word;
 }
 
 .done {
-    opacity: 0.5;
+    opacity: 0.6;
+    text-decoration: line-through;
 }
 
-@media screen and (max-width:768px) {
-    html {
-      font-size: 80%;
+/* Footer */
+footer {
+    background-color: var(--accent-dark);
+    color: #ffffff;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.infos {
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    header h1 {
+        font-size: 1.75rem;
     }
+
     main {
-        width: 100%;
-        padding: 10px;
-    }   
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    form input,
     form button {
-        padding: 10px 20px;
-    } 
-  }
+        font-size: 0.95rem;
+    }
+
+    main h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form input,
+    form button {
+        width: 100%;
+        border-radius: var(--border-radius);
+    }
+
+    form input {
+        border-right: 2px solid var(--accent-light);
+        margin-bottom: 0.5rem;
+    }
+
+    form button {
+        border: 2px solid var(--accent-color);
+    }
+
+    main h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    li {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .infos {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 85%;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    form input,
+    form button {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    main h2 {
+        font-size: 1.1rem;
+    }
+
+    li {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .infos {
+        font-size: 0.75rem;
+    }
+}
